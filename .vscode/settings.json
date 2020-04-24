@@ -1,0 +1,11 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/qing/turtlebot/devel/lib/python2.7/dist-packages",
+        "/home/qing/rocon/devel/lib/python2.7/dist-packages",
+        "/opt/ros/kinetic/lib/python2.7/dist-packages"
+    ],
+    "ros.distro": "kinetic",
+    "files.associations": {
+        "iostream": "cpp"
+    }
+}

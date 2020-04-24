@@ -1,0 +1,8 @@
+prefix=/home/qing/my_prj/ROS_MBOT_SIM_1/install
+
+Name: mbot_sim
+Description: Description of mbot_sim
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

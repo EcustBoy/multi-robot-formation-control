@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/qing/my_prj/catkin_ws_1/devel/include/**",
+                "/home/qing/my_prj/catkin_ws_1/src/python_bindings_tutorial/include/**",
+                "/home/qing/turtlebot/devel/include/**",
+                "/home/qing/rocon/devel/include/**",
+                "/opt/ros/kinetic/include/**",
+                "/home/qing/turtlebot/src/turtlebot_create_desktop/create_gazebo_plugins/include/**",
+                "/home/qing/turtlebot/src/turtlebot_apps/turtlebot_actions/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
