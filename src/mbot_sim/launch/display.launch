@@ -1,0 +1,45 @@
+<launch>
+    
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <arg name="model" default="$(find xacro)/xacro --inorder '$(find mbot_sim)/urdf/xacro/mbot.xacro'" />
+<group ns="mbot_1">
+    <param name="robot_description" command="$(arg model) ns:=mbot_1" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-urdf -model mbot_1 -param robot_description -x 0"/> 
+    <node name="image_process_1" pkg="mbot_sim" type="image_node_1">
+        <remap from="/camera/rgb/image_raw" to="/mbot_1/camera/rgb/image_raw"/>
+        <remap from="/camera/depth/image_raw" to="/mbot_1/camera/depth/image_raw"/>
+    </node>
+
+</group>
+
+<group ns="mbot_2">
+    <param name="robot_description" command="$(arg model) ns:=mbot_2" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-urdf -model mbot_2 -param robot_description -x 2"/>
+    <node name="image_process_2" pkg="mbot_sim" type="image_node_1">
+          <remap from="/camera/rgb/image_raw" to="/mbot_2/camera/rgb/image_raw"/>
+          <remap from="/camera/depth/image_raw" to="/mbot_2/camera/depth/image_raw"/>
+    </node>
+    
+</group>
+
+</launch>
+

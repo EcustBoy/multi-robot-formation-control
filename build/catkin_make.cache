@@ -1,0 +1,2 @@
+mbot_sim
+-DCMAKE_BUILD_TYPE=Debug -DCATKIN_DEVEL_PREFIX=/home/lsf/ROS_MBOT_SIM/devel -DCMAKE_INSTALL_PREFIX=/home/lsf/ROS_MBOT_SIM/install -G Unix Makefiles
