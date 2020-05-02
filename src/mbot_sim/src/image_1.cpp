@@ -17,6 +17,9 @@ int flag = 1 ;
 Mat src; 
 Mat src_gray; 
 Mat canny_output;
+vector<vector<Point> > contours; 	
+vector<Vec4i> hierarchy; 	
+Mat drawing;
 int thresh = 30; 
 int max_thresh = 255; 
 int getpix(Mat src);
@@ -47,6 +50,54 @@ void imageCallbackdepth(const sensor_msgs::ImageConstPtr& msg)
     ROS_ERROR("Could not convert image1 from '%s' to 'bgr8'. ", msg->encoding.c_str());
   }  
 }
+
+int getpix()
+{
+ if(colorImg.data){
+	  cvtColor( colorImg, src_gray, CV_BGR2GRAY );//灰度化 	
+    GaussianBlur( src_gray, src_gray, Size(3,3), 0.1, 0, BORDER_DEFAULT ); 	
+	  blur( src_gray, src_gray, Size(3,3) ); //滤波 	
+	
+	  Canny( src_gray, canny_output, thresh, thresh*3, 3 ); 		//利用canny算法检测边缘 
+
+	findContours( canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) ); 	//查找轮廓 	
+	
+	vector<Moments> mu(contours.size() ); 	//计算轮廓矩 	
+	for( int i = 0; i < contours.size(); i++ ) 	
+	{ 
+		mu[i] = moments( contours[i], false ); 
+	} 	
+ 
+	vector<Point2f> mc( contours.size() ); 	//计算轮廓的质心 
+	for( int i = 0; i < contours.size(); i++ ) 	
+	{ 
+		mc[i] = Point2d( mu[i].m10/mu[i].m00 , mu[i].m01/mu[i].m00 ); 
+	}  	
+    
+	drawing = Mat::zeros( canny_output.size(), CV_8UC3 ); 		//画轮廓及其质心并显示 	
+	for( int i = 0; i< contours.size(); i++ ) 	
+	{ 		
+		Scalar color = Scalar( 255, 0, 0); 		
+		drawContours( drawing, contours, i, color, 2, 8, hierarchy, 0, Point() ); 		
+		circle( drawing, mc[i], 5, Scalar( 0, 0, 255), -1, 8, 0 );		 		
+		rectangle(drawing, boundingRect(contours.at(i)), cvScalar(0,255,0)); 			
+		char tam[100]; 
+		sprintf(tam, "(%0.0f,%0.0f)",mc[i].x,mc[i].y); 
+		putText(drawing, tam, Point(mc[i].x, mc[i].y), FONT_HERSHEY_SIMPLEX, 0.4, cvScalar(255,0,255),1); 	
+  }	
+    imshow("rgb",colorImg);
+	  imshow( "gray", src_gray );
+	  imshow( "canny", canny_output );  
+    imshow( "Contours", drawing ); 	
+    }
+    if(depthImg.data){
+      imshow("depth",depthImg);
+    }
+	  waitKey(10); 	
+    //return 0;
+}
+
+
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "image_reciver");
@@ -67,17 +118,63 @@ int main(int argc, char **argv)
   {
     ros::spinOnce();
      
-    if(colorImg.data){
+   /* if(colorImg.data){
 	  cvtColor( colorImg, src_gray, CV_BGR2GRAY );
 	  Canny( src_gray, canny_output, thresh, thresh*3, 3 ); 	
-      imshow("rgb",colorImg);
+    imshow("rgb",colorImg);
 	  imshow( "gray", src_gray );
 	  imshow( "canny", canny_output );  
     }
     if(depthImg.data){
       imshow("depth",depthImg);
     }
-	  waitKey(10); 	
+	  waitKey(10); 	*/
+/*
+    if(colorImg.data){
+	  cvtColor( colorImg, src_gray, CV_BGR2GRAY );//灰度化 	
+    GaussianBlur( src_gray, src_gray, Size(3,3), 0.1, 0, BORDER_DEFAULT ); 	
+	  blur( src_gray, src_gray, Size(3,3) ); //滤波 	
+	
+	  Canny( src_gray, canny_output, thresh, thresh*3, 3 ); 		//利用canny算法检测边缘 
+
+	  findContours( canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) ); 	//查找轮廓 	
+	
+	  vector<Moments> mu(contours.size() ); 	//计算轮廓矩 	
+	  for( int i = 0; i < contours.size(); i++ ) 	
+	  { 
+		 mu[i] = moments( contours[i], false ); 
+	  } 	
+ 
+	  vector<Point2f> mc( contours.size() ); 	//计算轮廓的质心 
+	  for( int i = 0; i < contours.size(); i++ ) 	
+	  { 
+		 mc[i] = Point2d( mu[i].m10/mu[i].m00 , mu[i].m01/mu[i].m00 ); 
+	  }  	
+    
+	  drawing = Mat::zeros( canny_output.size(), CV_8UC3 ); 		//画轮廓及其质心并显示 	
+	  for( int i = 0; i< contours.size(); i++ ) 	
+	  { 		
+		Scalar color = Scalar( 255, 0, 0); 		
+		drawContours( drawing, contours, i, color, 2, 8, hierarchy, 0, Point() ); 		
+		circle( drawing, mc[i], 5, Scalar( 0, 0, 255), -1, 8, 0 );		 		
+		rectangle(drawing, boundingRect(contours.at(i)), cvScalar(0,255,0)); 			
+		char tam[100]; 
+		sprintf(tam, "(%0.0f,%0.0f)",mc[i].x,mc[i].y); 
+		putText(drawing, tam, Point(mc[i].x, mc[i].y), FONT_HERSHEY_SIMPLEX, 0.4, cvScalar(255,0,255),1); 	
+    }	
+    imshow("rgb",colorImg);
+	  imshow( "gray", src_gray );
+	  imshow( "canny", canny_output );  
+    imshow( "Contours", drawing ); 	
+    }
+    if(depthImg.data){
+      imshow("depth",depthImg);
+    }
+	  waitKey(10);*/
+
+    getpix();
+
+
   }
   return 0;
   cv::destroyWindow("rgb");
