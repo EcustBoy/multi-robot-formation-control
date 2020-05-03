@@ -24,6 +24,7 @@
     <node name="image_process_1" pkg="mbot_sim" type="image_node_1">
         <remap from="/camera/rgb/image_raw" to="/mbot_1/camera/rgb/image_raw"/>
         <remap from="/camera/depth/image_raw" to="/mbot_1/camera/depth/image_raw"/>
+        
     </node>
 
 </group>
@@ -34,12 +35,7 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
           args="-urdf -model mbot_2 -param robot_description -x 2"/>
-    <node name="image_process_2" pkg="mbot_sim" type="image_node_1">
-          <remap from="/camera/rgb/image_raw" to="/mbot_2/camera/rgb/image_raw"/>
-          <remap from="/camera/depth/image_raw" to="/mbot_2/camera/depth/image_raw"/>
-    </node>
-    
+   
 </group>
 
 </launch>
-

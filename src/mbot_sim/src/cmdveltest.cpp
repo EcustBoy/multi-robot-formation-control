@@ -8,7 +8,7 @@ using namespace std;
 int main(int argc,char** argv)
 {
     ros::init(argc, argv, "cmdveltest");
-     ros::NodeHandle cmdh;
+    ros::NodeHandle cmdh;
     ros::Publisher cmdpub= cmdh.advertise<geometry_msgs::Twist>("cmd_vel", 1, true);;
     ros::Rate r(60);
     while(1){
