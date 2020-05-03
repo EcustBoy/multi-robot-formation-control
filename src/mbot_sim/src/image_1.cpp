@@ -106,8 +106,6 @@ int getpix()
 	  rectangle(drawing, bbox, cvScalar(0,255,0));
     fp[0]=bbox.tl();
     fp[1]=bbox.br();
-    ROS_ERROR("fp1 cor:%d %d",fp[0].x,fp[0].y);
-    ROS_ERROR("fp2 cor:%d %d",fp[1].x,fp[1].y);
 
     circle( drawing, fp[0],2,Scalar( 0, 0, 255), -1, 8, 0);
     circle( drawing, fp[1],2,Scalar( 0, 0, 255), -1, 8, 0); 			
