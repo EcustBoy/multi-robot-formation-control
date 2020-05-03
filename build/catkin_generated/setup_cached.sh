@@ -7,10 +7,6 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/qing/my_prj/ROS_MBOT_SIM_1/devel:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PATH="/opt/ros/kinetic/bin:/home/qing/anaconda3/condabin:/home/qing/bin:/home/qing/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/usr/local/cuda-10.0/bin"
 export PWD="/home/qing/my_prj/ROS_MBOT_SIM_1/build"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/qing/my_prj/ROS_MBOT_SIM_1/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/qing/my_prj/ROS_MBOT_SIM_1/src:$ROS_PACKAGE_PATH"
 export TURTLEBOT_3D_SENSOR="astra"
