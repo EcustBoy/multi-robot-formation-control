@@ -24,13 +24,13 @@ double MyPoint::getDistance(MyPoint* target)  //计算两点之间距离离
 	return distance;
 }
 
-MyPoint MyPoint::operator+(const MyPoint &other) const  //计算向量的和与差
+MyPoint MyPoint::operator+(const MyPoint &other) const  //计算向量的和
 {
    MyPoint result = *(new MyPoint(x+other.x, y+other.y));
    return result;
 } 
 
-MyPoint MyPoint::operator-(const MyPoint &other) const
+MyPoint MyPoint::operator-(const MyPoint &other) const//计算向量的差
 {
    MyPoint result = *(new MyPoint(x-other.x, y-other.y));
    return result;
