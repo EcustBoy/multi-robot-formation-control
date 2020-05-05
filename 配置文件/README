@@ -1,2 +1,0 @@
-发布位置信息给话题/amcl_pose ，消息格式为geometry_msgs/PoseWithCovarianceStamped，算法经过计算发布速度到话题/cmd_vel
-
