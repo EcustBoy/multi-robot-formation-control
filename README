@@ -1,2 +1,4 @@
-发布位置信息给话题/amcl_pose ，消息格式为geometry_msgs/PoseWithCovarianceStamped，算法经过计算发布速度到话题/cmd_vel
+修改了image_1.cpp，加入了坐标转换。希望发布位置信息给话题/amcl_pose ，消息格式为geometry_msgs/PoseWithCovarianceStamped（这部分还没写好）
+参考链接https://blog.csdn.net/qq_42037180/article/details/98133266?ops_request_misc=&request_id=&biz_id=102&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-9
+加入了myPoint.cpp，node_trajectoryFollowing2.cpp，trajectoryFollowing2.cpp。算法经过计算发布速度到话题/cmd_vel（这部分可能还要修改）
 
