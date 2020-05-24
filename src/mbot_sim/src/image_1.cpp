@@ -5,15 +5,16 @@
 #include <opencv/cv.hpp>
 #include <opencv2/imgproc.hpp>
 #include <cv_bridge/cv_bridge.h>
+#include <cmath>
 #include <fstream>  
 #include <sstream>
 using namespace cv;
 using namespace std;
+#define PI 3.1415926;
 
 Mat colorImg;
 Mat depthImg;
-int flag = 1 ;
- 
+int flag = 1 ; 
 Mat src; 
 Mat src_gray; 
 Mat canny_output;
@@ -31,6 +32,13 @@ vector<Moments> mu(1);
 vector<Point2f> mc(1); 	//计算轮廓的质心
 vector<Point2i> fp(2);  // feature point
 Rect bbox;
+//camera param
+double image_width=1280;
+double image_hfov=1.8;
+double f=(image_width/2)/tan(image_hfov/2);
+int camera_cx=640;
+int camera_cy=360;
+
 void imageCallbackrgb(const sensor_msgs::ImageConstPtr& msg)
 {
   try
@@ -71,7 +79,7 @@ int getpix()
     drawing = Mat::zeros( canny_output.size(), CV_8UC3 ); 		//画轮廓及其质心并显示
     //printf("contours size:%d \n",contours.size());
 	  //find the largest contour
-    if(contours.size()<1){
+    if(contours.size()<2){
     //printf("no contours detect!");
       imshow("rgb",colorImg);
 	  //imshow( "gray", src_gray );
@@ -137,8 +145,30 @@ int getpix()
     }
 }
 
+double get_cor2camera(int m,int n)//像素坐标转换为世界坐标
+{
+//深度图中像素点(m,n)处的深度值
+//double point_depth=depthImg.at<float>(x,y);
+ROS_DEBUG("compute cor!");
+float point_depth=depthImg.ptr<float>(m)[n];
+
+//ushort d = depth.ptr<ushort>(m)[n];
+//点P的世界坐标
+//p.z = double(point_depth)/camera_factor;
+//p.x = (n-camera_cx)*p.z/camera_fx;
+//p.y = (m-camera_cy)*p.z/camera_fy;
+double z=double(point_depth);
+double x=(double(n)-camera_cx)*z/f;
+double y=(double(m)-camera_cy)*z/f;
+
+return x,y,z;
+
+}
+
+
 int main(int argc, char **argv)
 {
+  double x1,y1,z1,x2,y2,z2;
   ros::init(argc, argv, "image_reciver");
   ros::NodeHandle nh;
   //ros::NodeHandle nh2;
@@ -157,6 +187,13 @@ int main(int argc, char **argv)
   {
     ros::spinOnce();
     getpix();
+    
+   if(depthImg.data){
+    x1,y1,z1=get_cor2camera((fp[0].y+fp[1].y)/2,(fp[0].x+fp[1].x)/2);
+    ROS_DEBUG("%f,%f,%f",x1,y1,z1);
+   // x2,y2,z2=get_cor2camera(fp[1].x,fp[1].y);
+   // ROS_DEBUG("coordinate in camera frame:%f %f %f %f %f %f",x1,y1,z1,x2,y2,z2);
+    }
   }
   return 0;
   cv::destroyWindow("rgb");

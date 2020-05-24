@@ -9,8 +9,11 @@ int main(int argc,char** argv)
 {
     ros::init(argc, argv, "cmdveltest");
     ros::NodeHandle cmdh;
-    ros::Publisher cmdpub= cmdh.advertise<geometry_msgs::Twist>("cmd_vel", 1, true);;
+    ros::Publisher cmdpub= cmdh.advertise<geometry_msgs::Twist>("mbot_1/cmd_vel", 1, true);
+    ros::Publisher cmdpub= cmdh.advertise<geometry_msgs::Twist>("mbot_2/cmd_vel", 1, true);;
+
     ros::Rate r(60);
+    int t=0;
     while(1){
         geometry_msgs::Twist twist;
         geometry_msgs::Vector3 linear;
