@@ -188,8 +188,9 @@ int main(int argc, char **argv)
     ros::spinOnce();
     getpix();
     
-   if(depthImg.data){
+    if(depthImg.data){
     x1,y1,z1=get_cor2camera((fp[0].y+fp[1].y)/2,(fp[0].x+fp[1].x)/2);
+  //  v,w=control(x1,y1,z1);
     ROS_DEBUG("%f,%f,%f",x1,y1,z1);
    // x2,y2,z2=get_cor2camera(fp[1].x,fp[1].y);
    // ROS_DEBUG("coordinate in camera frame:%f %f %f %f %f %f",x1,y1,z1,x2,y2,z2);

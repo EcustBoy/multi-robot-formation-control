@@ -3,9 +3,9 @@
     <xacro:include filename="$(find mbot_sim)/urdf/xacro/mbot_base.xacro" />
     <xacro:include filename="$(find mbot_sim)/urdf/xacro/mbot_camera.xacro" />
 
-    <xacro:property name="camera_offset_x" value="0.17" />
+    <xacro:property name="camera_offset_x" value="0.2" />
     <xacro:property name="camera_offset_y" value="0" />
-    <xacro:property name="camera_offset_z" value="0.10" />
+    <xacro:property name="camera_offset_z" value="0" />
     
     <xacro:mbot_base_gazebo/>
 
