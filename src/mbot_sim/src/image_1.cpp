@@ -34,7 +34,7 @@ vector<Point2i> fp(2);  // feature point
 Rect bbox;
 //camera param
 double image_width=1280;
-double image_hfov=1.8;
+double image_hfov=2.094;
 double f=(image_width/2)/tan(image_hfov/2);
 int camera_cx=640;
 int camera_cy=360;
