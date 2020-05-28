@@ -46,13 +46,14 @@ double f=(image_width/2)/tan(image_hfov/2);
 int camera_cx=640;
 int camera_cy=360;
 //model state
-double v1,v2,w1,w2;//linear and angular velocity of mbot_1 and mbot_2
-double theta1,theta2;//pose angle of mbot_1 and mbot_2
+double v_1,v_2,w_1,w_2;//linear and angular velocity of mbot_1 and mbot_2
+double theta_1,theta_2;//angle of mbot_1 and mbot_2
+double x_1,y_1,x_2,y_2;//pos of mbot_1 and mbot_2
 //cor in follower's camera frame
 double p_x,p_y,p_z;
 //set params
 double d=0.2;
-double k1=0.01,k2=0.01;
+double k1=0.02,k2=0.01;
 double l_12_d=1;
 double phi_12_d=2*3.1415/3;
 
@@ -190,22 +191,26 @@ void gazebo_state_callback(const gazebo_msgs::ModelStates& msg){
   geometry_msgs::Pose pose_1=msg.pose[1];// pose of agent_1
   geometry_msgs::Point point_1=pose_1.position;
   geometry_msgs::Quaternion quat_1=pose_1.orientation;
-  theta1=2*acos(quat_1.w);//yaw angle
+  theta_1=2*acos(quat_1.w);//yaw angle
+  x_1=point_1.x;
+  y_1=point_1.y;
   geometry_msgs::Twist twist_1=msg.twist[1];// twist of agent_1
   geometry_msgs::Vector3 linear_1=twist_1.linear;
   geometry_msgs::Vector3 angular_1=twist_1.angular;
-  v1=linear_1.x;
-  w1=angular_1.z;
+  v_1=linear_1.x;
+  w_1=angular_1.z;
 
   geometry_msgs::Pose pose_2=msg.pose[2];// pose of agent_2
   geometry_msgs::Point point_2=pose_2.position;
   geometry_msgs::Quaternion quat_2=pose_2.orientation;
-  theta2=2*acos(quat_2.w);//yaw angle
+  theta_2=2*acos(quat_2.w);//yaw angle
+  x_2=point_2.x;
+  y_2=point_2.y;
   geometry_msgs::Twist twist_2=msg.twist[2];// twist of agent_2
   geometry_msgs::Vector3 linear_2=twist_2.linear;
   geometry_msgs::Vector3 angular_2=twist_2.angular;
-  v2=linear_2.x;
-  w2=angular_2.z;
+  v_2=linear_2.x;
+  w_2=angular_2.z;
 
 }
 
@@ -214,6 +219,7 @@ int main(int argc, char **argv)
 {
   double x=0,y=0,z=0;// cor in follower camera frame
   double l_12,phi_12,temp_theta;
+  double c_x,c_y;//camera point pos of follower in world frame
   ros::init(argc, argv, "image_reciver");
   ros::NodeHandle nh;
   //ros::NodeHandle nh2;
@@ -245,19 +251,25 @@ int main(int argc, char **argv)
     ROS_DEBUG("%f,%f,%f",p_x,p_y,p_z);
     }
     //send sensor value to controller node
-    l_12=sqrt(pow(p_x,2)+pow(p_z,2))-0.2;
-    temp_theta=atan(p_x/p_z);
-    phi_12=theta2-temp_theta+PI-theta1;
-   
-    w1,v1=controller(l_12,theta1,theta2,phi_12,v2,w2,l_12_d,phi_12_d,d,k1,k2);
+   // l_12=sqrt(pow(p_x,2)+pow(p_z,2))-0.2;
+   // temp_theta=atan(p_x/p_z);
+   // phi_12=theta2-temp_theta+PI-theta1;
+    
+    c_x=x_1+d*cos(theta_1);
+    c_y=y_1+d*sin(theta_1);
+    l_12=sqrt(pow((c_x-x_2),2)+pow((c_y-y_2),2));
+    phi_12=atan(c_y/c_x)-theta_1;
+
+
+    w_1,v_1=controller(l_12,theta_1,theta_2,phi_12,v_2,w_2,l_12_d,phi_12_d,d,k1,k2);
 
     //pub vel command
-    linear_output.x=v1;
+    linear_output.x=v_1;
     linear_output.y=0;
     linear_output.z=0;
     angular_output.x=0;
     angular_output.y=0;
-    angular_output.z=w1;
+    angular_output.z=w_1;
 
     twist_output.linear=linear_output;
     twist_output.angular=angular_output;
