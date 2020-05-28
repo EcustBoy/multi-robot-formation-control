@@ -1,2 +1,2 @@
-mbot_sim
+custom_msg:mbot_sim
 -DCATKIN_DEVEL_PREFIX=/home/qing/my_prj/ROS_MBOT_SIM_1/devel -DCMAKE_INSTALL_PREFIX=/home/qing/my_prj/ROS_MBOT_SIM_1/install -G Unix Makefiles

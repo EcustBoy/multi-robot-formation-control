@@ -1,0 +1,8 @@
+prefix=/home/qing/my_prj/ROS_MBOT_SIM_1/install
+
+Name: custom_msg
+Description: Description of custom_msg
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lcustom_msg
+Requires: message_generation message_runtime roscpp rospy std_msgs

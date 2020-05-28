@@ -150,6 +150,7 @@ image_node_1_EXTERNAL_OBJECTS =
 /home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/mbot_sim/image_node_1: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_ximgproc3.so.3.3.1
 /home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/mbot_sim/image_node_1: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xobjdetect3.so.3.3.1
 /home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/mbot_sim/image_node_1: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_xphoto3.so.3.3.1
+/home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/mbot_sim/image_node_1: /home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/libcontroller.so
 /home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/mbot_sim/image_node_1: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_shape3.so.3.3.1
 /home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/mbot_sim/image_node_1: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_photo3.so.3.3.1
 /home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/mbot_sim/image_node_1: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_datasets3.so.3.3.1

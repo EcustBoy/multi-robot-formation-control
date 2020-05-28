@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC  -O0 -Wall -g -ggdb  -shared -Wl,-soname,libcontroller.so -o /home/qing/my_prj/ROS_MBOT_SIM_1/devel/lib/libcontroller.so CMakeFiles/controller.dir/src/controller.cpp.o 

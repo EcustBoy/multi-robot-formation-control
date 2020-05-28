@@ -126,6 +126,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/qing/my_prj/ROS_MBOT_SIM_1/build/gtest/cmake_install.cmake")
+  include("/home/qing/my_prj/ROS_MBOT_SIM_1/build/custom_msg/cmake_install.cmake")
   include("/home/qing/my_prj/ROS_MBOT_SIM_1/build/mbot_sim/cmake_install.cmake")
 
 endif()

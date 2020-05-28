@@ -6,7 +6,8 @@
     ],
     "ros.distro": "kinetic",
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "sstream": "cpp"
     },
     "python.pythonPath": "/usr/bin/python"
 }

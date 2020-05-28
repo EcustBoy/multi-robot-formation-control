@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/qing/my_prj/ROS_MBOT_SIM_1/src/mbot_sim/src/controller.cpp
+cmath
+-
+fstream
+-
+sstream
+-
+

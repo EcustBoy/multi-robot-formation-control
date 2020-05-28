@@ -68,28 +68,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -112,6 +90,16 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -123,15 +111,27 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : list_install_components/fast
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,124 +166,64 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+mbot_sim/CMakeFiles/controller.dir/rule:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/controller.dir/rule
+.PHONY : mbot_sim/CMakeFiles/controller.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+controller: mbot_sim/CMakeFiles/controller.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_nodejs
+.PHONY : controller
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+controller/fast:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/controller.dir/build.make mbot_sim/CMakeFiles/controller.dir/build
+.PHONY : controller/fast
 
 # Convenience name for target.
-mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-.PHONY : mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+.PHONY : mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_nodejs: mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+sensor_msgs_generate_messages_nodejs: mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_nodejs
+.PHONY : sensor_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
+sensor_msgs_generate_messages_nodejs/fast:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-mbot_sim/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : mbot_sim/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+.PHONY : mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_py: mbot_sim/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+sensor_msgs_generate_messages_eus: mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
 
-.PHONY : std_msgs_generate_messages_py
+.PHONY : sensor_msgs_generate_messages_eus
 
 # fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/std_msgs_generate_messages_py.dir/build.make mbot_sim/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
+sensor_msgs_generate_messages_eus/fast:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+.PHONY : sensor_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-.PHONY : mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+.PHONY : mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_eus: mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+sensor_msgs_generate_messages_py: mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_eus
+.PHONY : sensor_msgs_generate_messages_py
 
 # fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : mbot_sim/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: mbot_sim/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make mbot_sim/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_py: mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_py
-
-# fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/image_node.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/image_node.dir/rule
-.PHONY : mbot_sim/CMakeFiles/image_node.dir/rule
-
-# Convenience name for target.
-image_node: mbot_sim/CMakeFiles/image_node.dir/rule
-
-.PHONY : image_node
-
-# fast build rule for target.
-image_node/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/image_node.dir/build.make mbot_sim/CMakeFiles/image_node.dir/build
-.PHONY : image_node/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_cpp: mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
+sensor_msgs_generate_messages_py/fast:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 mbot_sim/CMakeFiles/image_node_1.dir/rule:
@@ -316,64 +256,34 @@ sensor_msgs_generate_messages_lisp/fast:
 .PHONY : sensor_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+.PHONY : mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_py: mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+sensor_msgs_generate_messages_cpp: mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_py
+.PHONY : sensor_msgs_generate_messages_cpp
 
 # fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make mbot_sim/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
+sensor_msgs_generate_messages_cpp/fast:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make mbot_sim/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-mbot_sim/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : mbot_sim/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_cpp: mbot_sim/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+geometry_msgs_generate_messages_py: mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
 
-.PHONY : std_msgs_generate_messages_cpp
+.PHONY : geometry_msgs_generate_messages_py
 
 # fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make mbot_sim/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-.PHONY : mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_eus: mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_eus
-
-# fast build rule for target.
-sensor_msgs_generate_messages_eus/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make mbot_sim/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
-.PHONY : sensor_msgs_generate_messages_eus/fast
+geometry_msgs_generate_messages_py/fast:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make mbot_sim/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 mbot_sim/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
@@ -391,49 +301,19 @@ geometry_msgs_generate_messages_cpp/fast:
 .PHONY : geometry_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-.PHONY : mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_nodejs: mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+geometry_msgs_generate_messages_eus: mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_nodejs
+.PHONY : geometry_msgs_generate_messages_eus
 
 # fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make mbot_sim/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : mbot_sim/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: mbot_sim/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/roscpp_generate_messages_py.dir/build.make mbot_sim/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
+geometry_msgs_generate_messages_eus/fast:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make mbot_sim/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 mbot_sim/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
@@ -451,151 +331,46 @@ geometry_msgs_generate_messages_lisp/fast:
 .PHONY : geometry_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-mbot_sim/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : mbot_sim/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+.PHONY : mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: mbot_sim/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+geometry_msgs_generate_messages_nodejs: mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : std_msgs_generate_messages_lisp
+.PHONY : geometry_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make mbot_sim/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+geometry_msgs_generate_messages_nodejs/fast:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make mbot_sim/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
 
-# Convenience name for target.
-mbot_sim/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : mbot_sim/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+src/controller.o: src/controller.cpp.o
 
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: mbot_sim/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make mbot_sim/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : mbot_sim/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: mbot_sim/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make mbot_sim/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : mbot_sim/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: mbot_sim/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make mbot_sim/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : mbot_sim/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: mbot_sim/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/roscpp_generate_messages_eus.dir/build.make mbot_sim/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make mbot_sim/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-mbot_sim/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f CMakeFiles/Makefile2 mbot_sim/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : mbot_sim/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: mbot_sim/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make mbot_sim/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-src/image.o: src/image.cpp.o
-
-.PHONY : src/image.o
+.PHONY : src/controller.o
 
 # target to build an object file
-src/image.cpp.o:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/image_node.dir/build.make mbot_sim/CMakeFiles/image_node.dir/src/image.cpp.o
-.PHONY : src/image.cpp.o
+src/controller.cpp.o:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/controller.dir/build.make mbot_sim/CMakeFiles/controller.dir/src/controller.cpp.o
+.PHONY : src/controller.cpp.o
 
-src/image.i: src/image.cpp.i
+src/controller.i: src/controller.cpp.i
 
-.PHONY : src/image.i
+.PHONY : src/controller.i
 
 # target to preprocess a source file
-src/image.cpp.i:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/image_node.dir/build.make mbot_sim/CMakeFiles/image_node.dir/src/image.cpp.i
-.PHONY : src/image.cpp.i
+src/controller.cpp.i:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/controller.dir/build.make mbot_sim/CMakeFiles/controller.dir/src/controller.cpp.i
+.PHONY : src/controller.cpp.i
 
-src/image.s: src/image.cpp.s
+src/controller.s: src/controller.cpp.s
 
-.PHONY : src/image.s
+.PHONY : src/controller.s
 
 # target to generate assembly for a file
-src/image.cpp.s:
-	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/image_node.dir/build.make mbot_sim/CMakeFiles/image_node.dir/src/image.cpp.s
-.PHONY : src/image.cpp.s
+src/controller.cpp.s:
+	cd /home/qing/my_prj/ROS_MBOT_SIM_1/build && $(MAKE) -f mbot_sim/CMakeFiles/controller.dir/build.make mbot_sim/CMakeFiles/controller.dir/src/controller.cpp.s
+.PHONY : src/controller.cpp.s
 
 src/image_1.o: src/image_1.cpp.o
 
@@ -631,42 +406,27 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... install/local"
+	@echo "... list_install_components"
 	@echo "... install/strip"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... image_node"
-	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... controller"
+	@echo "... edit_cache"
+	@echo "... sensor_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_eus"
+	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... image_node_1"
 	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... list_install_components"
-	@echo "... sensor_msgs_generate_messages_eus"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... rebuild_cache"
 	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... src/image.o"
-	@echo "... src/image.i"
-	@echo "... src/image.s"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... src/controller.o"
+	@echo "... src/controller.i"
+	@echo "... src/controller.s"
 	@echo "... src/image_1.o"
 	@echo "... src/image_1.i"
 	@echo "... src/image_1.s"
